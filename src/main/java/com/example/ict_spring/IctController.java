@@ -6,15 +6,22 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import javax.servlet.http.HttpSession;
+
 @Controller
 public class IctController {
     @Autowired
     private IctService service;
 
+    @Autowired
+    private HttpSession httpSession;
+
     @GetMapping("Kari")
     public String get(Model model){
-        //model.addAttribute("chitose",service.findAll("02:00:00","1").toString());
-        System.out.println(service.leave_findAll("07:00:00"));
+        String dep="chitose";
+        String time="09:00:00";
+
+        service.leave_findAll(time,dep);
         return "kakkokari";
     }
 
@@ -22,8 +29,16 @@ public class IctController {
     public String post(/*String time,String stand,*/Model model){
         return "kakkokari";
     }
+
+
     @GetMapping("Karikari")
     public String get2(Model model){
+        //String dep=(String) httpSession.getAttribute("dep");
+        //String time=(String) httpSession.getAttribute("time");
+        String dep="chitose";
+        String time="09:00:00";
+
+        service.leave_findAll(time,dep);
         return "kakkokarikari";
     }
 }

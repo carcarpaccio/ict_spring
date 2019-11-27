@@ -14,13 +14,9 @@ public class IctRepository {
     @Autowired
     private JdbcTemplate jdbc;
 
-    List<LeaveTimeTable> leave_select(String time){
-        var sql="SELECT * FROM LTIMETABLE where LTIMETABLE.HONBUTOU>'"+time+"'";
-        return  jdbc.query(sql,newInstance(LeaveTimeTable.class));
-    }
-
-    List<LeaveTimeTable> arrive_select(String time){
-        var sql="SELECT * FROM LTIMETABLE where LTimeTable.HONBUTOU>'"+time+"'";
+    List<LeaveTimeTable> leave_select(String time,String dep){
+        var sql="SELECT * FROM 往路時刻表 where 往路時刻表."+dep+">'"+time+"'";
+        System.out.println(sql);
         return  jdbc.query(sql,newInstance(LeaveTimeTable.class));
     }
 }

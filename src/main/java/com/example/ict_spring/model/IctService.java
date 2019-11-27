@@ -9,28 +9,15 @@ import org.springframework.stereotype.Service;
 import java.util.Collections;
 import java.util.List;
 
+
 @Service
 public class IctService {
     @Autowired
     IctRepository repository;
 
-    public List<LeaveTimeTable> leave_findAll(String time){
+    public List<LeaveTimeTable> leave_findAll(String time,String dep){
         try{
-            //System.out.println(repository.leave_select(time).get(0).getChitose());//消す
-            //System.out.println(repository.leave_select(time).get(1).getChitose());
-            return repository.leave_select(time);
-        }
-        catch (DataAccessException e) {
-            e.printStackTrace();
-        }
-        return Collections.emptyList();
-    }
-
-    public List<LeaveTimeTable> arrive_findAll(String time){
-        try{
-            System.out.println(repository.leave_select(time).get(0).getChitose());//消す
-            System.out.println(repository.leave_select(time).get(1).getChitose());
-            return repository.arrive_select(time);
+            return repository.leave_select(time,dep);
         }
         catch (DataAccessException e) {
             e.printStackTrace();
