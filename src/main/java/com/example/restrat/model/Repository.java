@@ -1,5 +1,6 @@
 package com.example.restrat.model;
 
+import com.example.restrat.model.TimeTableModel.ATimeTable;
 import com.example.restrat.model.TimeTableModel.LTimeTable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -21,7 +22,12 @@ public class Repository {
 
     List<LTimeTable> leave_select(String time, String dep){
         var sql="SELECT * FROM LTIMETABLE where LTIMETABLE."+dep+">'"+time+"'";
-        System.out.println(sql);
         return  jdbc.query(sql,newInstance(LTimeTable.class));
     }
+
+    List<ATimeTable> arrive_select(String time, String dep){
+        var sql="SELECT * FROM ATIMETABLE LEFT join ASTAND on ASTAND.ID = ATIMETABLE.ID where ATIMETABLE."+dep+">'"+time+"'";
+        return  jdbc.query(sql,newInstance(ATimeTable.class));
+    }
+
 }

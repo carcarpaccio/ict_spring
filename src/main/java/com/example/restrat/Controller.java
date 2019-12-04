@@ -18,16 +18,12 @@ public class Controller {
 
     @GetMapping("Kari")
     public String get(Model model){
-        String dep="chitose";
-        String time="09:00:00";
-
-        System.out.println(service.leave_findAll(time,dep).get(3).getChitose());
         return "kakkokari";
     }
 
     @PostMapping("Kari")
-    public String post(/*String time,String stand,*/Model model){
-        return "kakkokari";
+    public String post(/*String time,String dep,*/Model model){
+        return "kakkokarikarikari";
     }
 
 

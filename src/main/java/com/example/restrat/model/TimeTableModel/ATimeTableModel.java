@@ -7,7 +7,7 @@ abstract public class ATimeTableModel {
     private LocalTime chitose;
     private LocalTime minamichitose;
     private LocalTime honbutou;
-    private LocalTime kenkyuutou;
+    private LocalTime kenkyutou;
 
 
     public int getID() {
@@ -43,10 +43,10 @@ abstract public class ATimeTableModel {
     }
 
     public LocalTime getKenkyuutou() {
-        return kenkyuutou;
+        return kenkyutou;
     }
 
-    public void setKenkyuutou(LocalTime kenkyuutou) {
-        this.kenkyuutou = kenkyuutou;
+    public void setKenkyutou(LocalTime kenkyutou) {
+        this.kenkyutou = kenkyutou;
     }
 }
