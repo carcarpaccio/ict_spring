@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="viewport" content="width=device-width,initial-scal=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>IctBus</title>
+    <link rel="stylesheet" href="normalize.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdn.rawgit.com/jonthornton/jquery-timepicker/3e0b283a/jquery.timepicker.min.css">
+
+    <script type="text/javascript" src="test.js"></script>
+    <script type="text/javascript"src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="https://cdn.rawgit.com/jonthornton/jquery-timepicker/3e0b283a/jquery.timepicker.min.js"></script>
+
+</head>
+<body>
+<header>
+    <div class="headerInner">
+        <h1>バス時刻表</h1>
+    </div>
+</header>
+<form action="/timetable" method="get">
+    <div>
+        <h2>出発or到着</h2>
+        <div>
+            <input type="radio" name="dir" id="d1" value="dep" checked> <label for="d1">出発</label>
+            <input type="radio" name="dir" id="d2" value="arr"><label for="d2">到着</label>
+        </div>
+    </div>
+    <div>
+        <h2>駅</h2>
+        <div>
+            <input type="radio" name="sta" id="o1" value="CHITOSE"checked>
+            <label for="o1">千歳駅</label>
+            <input type="radio" name="sta" id="o2" value="MINAMICHITOSE">
+            <label for="o2">南千歳駅</label>
+            <input type="radio" name="sta" id="o3" value="KENKYUTOU">
+            <label for="o3">実験棟</label>
+            <input type="radio" name="sta" id="o4" value="HONBUTOU">
+            <label for="o4">本部棟</label>
+        </div>
+    </div>
+    <h2>時刻</h2>
+    <div>
+        <input type="text" name="time" class="lib-timepicker4" data-time-format="H:i"/>
+        <script>
+            //Library jquery-timepicker
+            var d= new Date();
+            var hour = d.getHours();
+            $('.lib-timepicker4').timepicker({
+                'minTime': ''+hour+':00',
+                'maxTime': '21:45',
+                'step': 15,
+            });
+        </script>
+    </div>
+    <div class="btn">
+        <button id="submit">表示</button>
+    </div>
+</form>
+
+</body>
+</html>

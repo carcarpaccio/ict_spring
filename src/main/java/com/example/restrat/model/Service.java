@@ -10,26 +10,46 @@ import java.util.List;
 
 @org.springframework.stereotype.Service
 public class Service {
+    private List<LTimeTable> lTimeTables;
+    private List<ATimeTable> aTimeTables;
+
+    private String dir;
+
     @Autowired
     Repository repository;
 
-    public List<LTimeTable> leave_findAll(String time, String dep){
+    public void leave_findAll(String time, String dep){
         try{
-            return repository.leave_select(time,dep);
+            System.out.println(repository.leave_select(time,dep).get(1).getID());
+            System.out.println("find");
         }
         catch (DataAccessException e) {
             e.printStackTrace();
         }
-        return Collections.emptyList();
     }
 
-    public List<ATimeTable> arrive_findAll(String time, String dep){
+    public void arrive_findAll(String time, String dep){
         try{
-            return repository.arrive_select(time,dep);
+            aTimeTables= repository.arrive_select(time,dep);
         }
         catch (DataAccessException e) {
             e.printStackTrace();
         }
-        return Collections.emptyList();
+    }
+
+    public List<LTimeTable> getlTimeTables() {
+        return lTimeTables;
+    }
+
+    public List<ATimeTable> getaTimeTables() {
+        return aTimeTables;
+    }
+
+    public String getDir() {
+        return dir;
+    }
+
+    public void setDir(String dir) {
+        this.dir = dir;
     }
 }

@@ -16,19 +16,21 @@ public class Controller {
     @Autowired
     private HttpSession httpSession;
 
-    @GetMapping("Kari")
+    @GetMapping("index")
     public String get(Model model){
-        return "kakkokari";
-    }
-
-    @PostMapping("Kari")
-    public String post(/*String time,String dep,*/Model model){
-        return "kakkokarikarikari";
+        return "index.html";
     }
 
 
-    @GetMapping("Karikari")
+    @GetMapping("timetable")
     public String get2(Model model){
-        return "kakkokarikari";
+        System.out.println("g2");
+        service.leave_findAll("10:00:00","chitose");
+        return "timetable.html";
+    }
+    @PostMapping("timetable")
+    public String post2(Model model){
+        System.out.println("p2");
+        return "timetable.html";
     }
 }
