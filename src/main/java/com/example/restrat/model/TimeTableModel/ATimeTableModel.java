@@ -42,7 +42,7 @@ abstract public class ATimeTableModel {
         this.honbutou = honbutou;
     }
 
-    public LocalTime getKenkyuutou() {
+    public LocalTime getKenkyutou() {
         return kenkyutou;
     }
 

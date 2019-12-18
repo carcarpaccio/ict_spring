@@ -11,7 +11,7 @@ import static org.springframework.jdbc.core.BeanPropertyRowMapper.newInstance;
 
 @org.springframework.stereotype.Repository
 public class Repository {
-//    @Autowired
+    @Autowired
     private JdbcTemplate jdbc;
 
 
@@ -28,6 +28,15 @@ public class Repository {
     List<ATimeTable> arrive_select(String time, String dep){
         var sql="SELECT * FROM ATIMETABLE LEFT join ASTAND on ASTAND.ID = ATIMETABLE.ID where ATIMETABLE."+dep+">'"+time+"'";
         return  jdbc.query(sql,newInstance(ATimeTable.class));
+    }
+    void uploadCSS(String leave,String arrive,String stand){
+        var lsql="create table LTIMETABLE(id int not null primary key ,chitose time,minamichitose time,kenkyutou time,honbutou time)as select * from CSVREAD("+leave+")";
+        jdbc.execute(lsql);
+
+        var asql="create table ATIMETABLE(id int not null primary key ,chitose time,minamichitose time,kenkyutou time, honbutou time)as select * from CSVREAD("+arrive+")";
+        jdbc.execute(asql);
+
+        //var ssql=""
     }
 
 }

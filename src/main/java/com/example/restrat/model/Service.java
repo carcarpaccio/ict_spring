@@ -18,23 +18,24 @@ public class Service {
     @Autowired
     Repository repository;
 
-    public void leave_findAll(String time, String dep){
-        try{
-            System.out.println(repository.leave_select(time,dep).get(1).getID());
-            System.out.println("find");
+    public void findAll(String time, String dep){
+        if(this.dir.equals("dep")){
+            try{
+                lTimeTables=repository.leave_select(time,dep);
+            }
+            catch (DataAccessException e) {
+                e.printStackTrace();
+            }
         }
-        catch (DataAccessException e) {
-            e.printStackTrace();
+        else if(this.dir.equals("arr")){
+            try{
+                aTimeTables= repository.arrive_select(time,dep);
+            }
+            catch (DataAccessException e) {
+                e.printStackTrace();
+            }
         }
-    }
-
-    public void arrive_findAll(String time, String dep){
-        try{
-            aTimeTables= repository.arrive_select(time,dep);
-        }
-        catch (DataAccessException e) {
-            e.printStackTrace();
-        }
+        else System.out.println("error");
     }
 
     public List<LTimeTable> getlTimeTables() {
@@ -45,11 +46,11 @@ public class Service {
         return aTimeTables;
     }
 
-    public String getDir() {
-        return dir;
-    }
-
     public void setDir(String dir) {
         this.dir = dir;
+    }
+
+    public String getDir() {
+        return dir;
     }
 }
