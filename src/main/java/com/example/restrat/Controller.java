@@ -1,6 +1,7 @@
 package com.example.restrat;
 
 import com.example.restrat.model.Service;
+import com.example.restrat.model.TimeTableModel.Dir;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,14 +23,14 @@ public class Controller {
     @GetMapping("timetable")
     public String get2(Model model,String sta,String time,String dir){
         System.out.println("g2");
-
-        service.setDir(dir);
-        service.findAll(time+":00",sta);
-        if(service.getDir().equals("dep")){
+        System.out.println(time);
+        service.setDir(Dir.getEnum(dir));
+        service.findAll(time,sta);
+        if(service.getDir()==Dir.dep){
             model.addAttribute("atimetable",service.getlTimeTables());
         }
-        else if(service.getDir().equals("arr")){
-            //model.addAttribute("atimetable",service.getaTimeTables());
+        else if(service.getDir()==Dir.arr){
+            model.addAttribute("atimetable",service.getaTimeTables());
         }
         else System.out.println("error");
 
@@ -43,6 +44,12 @@ public class Controller {
 
     @GetMapping("uploadFile")
     public String get3(Model model){
-        return "uploaded";
+        return "uploadFile.html";
+    }
+
+    @PostMapping("uploadFile")
+    public String post3(Model model,String stand,String leave,String arrive){
+        service.createTable(stand,leave,arrive);
+        return "uploaded.html";
     }
 }

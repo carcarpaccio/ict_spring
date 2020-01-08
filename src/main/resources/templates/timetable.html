@@ -6,8 +6,8 @@
     <meta http-equiv="viewport" content="width=device-width,initial-scal=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>IctBus</title>
-    <link rel="stylesheet" href="normalize.css">
-    <link rel="stylesheet" href="timetable.css">
+    <link rel="stylesheet" href="../static/normalize.css">
+    <link rel="stylesheet" href="../static/timetable.css">
 
     <script type="text/javascript" src="test.js"></script>
     <script type="text/javascript"src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
@@ -17,9 +17,14 @@
 </head>
 <body>
 <p>時刻表</p>
-<ul th:each="ri:${atimetable}">
-    <li>[[${ri.chitose}]]--[[${ri.minamichitose}]]--[[${ri.kenkyutou}]]--[[${ri.honbutou}]]</li>
-</ul>
+<table>
+<thead>
+<th>千歳駅</th><th>南千歳駅</th><th>実験棟</th><th>本部棟</th>
+</thead>
+<tr th:each="ri:${atimetable}">
+    <td>[[${ri.chitose}]]</td><td>[[${ri.minamichitose}]]</td><td>[[${ri.kenkyutou}]]</td><td>[[${ri.honbutou}]]</td>
+</tr>
+</table>
 </body>
 </body>
 </html>
